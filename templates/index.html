@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        #result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Classification</h1>
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".jpg, .jpeg, .png" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    <div id="result">
+        {% if predictions %}
+            <h3>Predictions:</h3>
+            <ul>
+                {% for prediction in predictions %}
+                    <li>{{ prediction.label }} - {{ prediction.probability }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if error %}
+            <p style="color: red;">Error: {{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
