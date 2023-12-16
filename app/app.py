@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 # Load the pre-trained MobileNetV2 model
 model = MobileNetV2(weights='imagenet')
+# model.save("./model/MobileNetV2.h5")
 
 def prepare_image(img_path):
     img = image.load_img(img_path, target_size=(224, 224))
